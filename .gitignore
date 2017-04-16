@@ -4,3 +4,4 @@ templates/
 app.yaml
 appengine_config.py
 *pyc
+main.py
