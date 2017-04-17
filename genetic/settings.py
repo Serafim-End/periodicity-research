@@ -1,0 +1,6 @@
+# coding: utf-8
+
+
+D0 = 0.1
+POPULATION_PERCENT = 0.2
+SIZE_PERIOD_TYPES = 20
