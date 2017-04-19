@@ -6,13 +6,14 @@ import numpy as np
 class GenerateData(object):
 
     def __init__(self, sequence_size, alphabet_size, period_size,
-                 noise_level, sequences_count):
+                 noise_level, sequences_count, path=None):
 
         self.sequence_size = sequence_size
         self.alphabet_size = alphabet_size
         self.period_size = period_size
         self.noise_level = noise_level
         self.sequences_count = sequences_count
+        self.path = path
 
         self.sequences = []
 
@@ -54,16 +55,39 @@ class GenerateData(object):
 
             self.sequences.append(seq)
 
-        return np.array(self.sequences)
+        if self.path:
+            for i, seq in enumerate(self.sequences):
+                p = os.path.join(
+                    self.path,
+                    'seq{}size{}noise_{}alphabet{}period{}.txt'.format(
+                        i,
+                        self.sequence_size,
+                        self.noise_level,
+                        self.alphabet_size,
+                        self.period_size
+                    )
+                )
+
+                with open(p, 'a+') as rf:
+                    seq = ''.join([chr(97 + e) for e in seq])
+                    rf.write(seq)
+        else:
+            return np.array(self.sequences)
 
 
 if __name__ == '__main__':
-    gen = GenerateData(
-        sequence_size=100,
-        alphabet_size=5,
-        period_size=3,
-        noise_level=0.2,
-        sequences_count=20
-    )
+    import os
 
-    print(gen.generate())
+    for s_size in np.linspace(100, 10000, 10):
+        for nl in np.linspace(0.1, 0.9, 7):
+            for p_size in np.linspace(2, 21, 5):
+                gen = GenerateData(
+                    sequence_size=int(s_size),
+                    alphabet_size=26,
+                    period_size=int(p_size),
+                    noise_level=nl,
+                    sequences_count=10,
+                    path=os.path.join(os.getcwd(), 'data')
+                )
+
+                gen.generate()
