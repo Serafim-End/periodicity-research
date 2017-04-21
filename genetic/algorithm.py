@@ -29,7 +29,7 @@ class KorotkovGenetic(object):
         self.population = Population()
 
     def initialize(self, population_size):
-        while len(self.population) < population_size:
+        while self.population.size < population_size:
             o = Organism(self.n, self.S, self.S1, self.alphabet_size)
             if self.population and o.cmp_all(self.population):
                 self.population.organisms.append(o)
@@ -172,9 +172,8 @@ if __name__ == '__main__':
     o1 = Organism(n, S, genetic.S1, alphabet_size)
     o2 = Organism(n, S, genetic.S1, alphabet_size)
 
-    print genetic.crossover(o1, o2)
+    print(genetic.crossover(o1, o2))
 
-    #
     # pS1, S1 = generate_artificial_sequence(artificial_n, N, alphabet_size)
     #
     # print('S: {}'.format(S))
