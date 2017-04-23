@@ -7,6 +7,9 @@ from scipy.spatial.distance import hamming
 
 
 class WARPAlgorithm(object):
+    """
+    WARP algorithm implementation based on fastDTW
+    """
     def __init__(self, sequence):
         self.sequence = sequence
         self.candidates = []
