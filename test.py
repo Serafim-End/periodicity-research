@@ -4,7 +4,7 @@ import unittest
 
 import numpy as np
 
-from sequence import GenerateData
+from generate_data import GenerateData
 from warp.algorithm import WARPAlgorithm
 
 
