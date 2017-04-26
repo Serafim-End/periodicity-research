@@ -10,8 +10,8 @@ class CMPTEST(object):
         return self.a > other.a
 
     def cmp_all(self, others):
-        for o in others:
-            print self > o
+        return all([self > o for o in others])
+
 
 l = [CMPTEST(1), CMPTEST(2), CMPTEST(4),
      CMPTEST(10), CMPTEST(100), CMPTEST(13)]
