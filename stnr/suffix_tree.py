@@ -373,12 +373,10 @@ class SuffTree(SuffixHelper):
 
         Edge.HASH_TABLE_SIZE = prime
         Edge.edges = [Edge.default()] * prime
-        print 'here2'
 
         active = Suffix(0, 0, -1)
         for i in range(self.N):
             self.AddPrefix(active, i)
-        print 'here3'
 
     def AddPrefix(self, active, last_char_index):
         """
