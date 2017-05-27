@@ -5,7 +5,7 @@ from algorithm import STNRAlgorithm
 
 def test():
 
-    STNRAlgorithm.s = 'abcdefgklabcdefgklabcdefgklabcdefgkl' + '$'
+    STNRAlgorithm.s = 'abcdeabcdeabcdeabcdeabcdeabcdeabcde' + '$'
     print '01234567890123456789'
     print
 
