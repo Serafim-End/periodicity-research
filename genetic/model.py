@@ -3,6 +3,9 @@
 import numpy as np
 import settings
 
+# For testing was used http://victoria.biengi.ac.ru/splinter/index.php
+# KOROTKOV implementation
+
 
 class Organism(object):
     def __init__(self, n, S, S1, alphabet_size):
@@ -29,8 +32,6 @@ class Organism(object):
             for j in range(self.m.shape[1]):
                 p[i, j] = fi * tj
                 kd += self.m[i, j] * p[i, j]
-            
-
 
     def dynamic(self):
 
@@ -40,8 +41,6 @@ class Organism(object):
         self.dm = None
         d = None
         e = d / 4.
-
-
 
         for i in range(1, self.S.size):
             for j in range(1, self.S.size):
@@ -61,7 +60,6 @@ class Organism(object):
                     self.F[i, j - 1] - d,
                     self.F2[i, j - 1] - e
                 ])
-
 
     def __str__(self):
         pass
