@@ -17,3 +17,7 @@ l = [CMPTEST(1), CMPTEST(2), CMPTEST(4),
      CMPTEST(10), CMPTEST(100), CMPTEST(13)]
 
 CMPTEST(15).cmp_all(l)
+
+
+with open() as rf:
+    rf.write()
