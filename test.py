@@ -94,3 +94,33 @@ class AlgorithmsTests(unittest.TestCase):
             'faild experiment, lower than 50% correct,'
             ' just: {}'.format(percent)
         )
+
+    def test_stnr_algorithm(self):
+        """
+        STNR Algorithm tests should be here
+        
+        Suffix Tree Noise Resilient algorithm should contain
+         get_best_candidates method
+        
+        :return: statistics after testing
+        """
+        from stnr.algorithm import STNRAlgorithm
+
+        t = TestSystem(
+            noises=np.array([0.1, 0.2, 0.3, 0.4]),
+            sequence_sizes=np.array([100, 500, 1000, 3000]),
+            alphabet_sizes=np.array([10, 50, 100, 300]),
+            period_sizes=np.array([5, 25, 50, 100]),
+            sequences_counts=10,
+        )
+
+        # algo - implementation of Suffix Tree Noise Resilient Algorithm
+        correct, percent = t.make_test(algo=STNRAlgorithm)
+
+        self.assertTrue(correct / percent > 0, 'no experiments')
+        self.assertTrue(correct > 0, 'no correct answers')
+        self.assertTrue(
+            percent > 0.5,
+            'faild experiment, lower than 50% correct,'
+            ' just: {}'.format(percent)
+        )
