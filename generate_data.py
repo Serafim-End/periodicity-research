@@ -137,9 +137,9 @@ class GenerateData(object):
 if __name__ == '__main__':
     import os
 
-    for s_size in np.linspace(100, 10000, 10):
+    for s_size in np.linspace(100, 10000, 100):
         for nl in np.linspace(0.1, 0.9, 10):
-            for p_size in np.linspace(2, 21, 10):
+            for p_size in np.linspace(2, 21, 100):
                 gen = GenerateData(
                     sequence_size=int(s_size),
                     alphabet_size=26,
