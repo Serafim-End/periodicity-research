@@ -235,9 +235,7 @@ class STNRAlgorithm(object):
         sounds like a cast
         :return: best candidate
         """
-
-        from warp.algorithm import WARPAlgorithm as wa
-        return wa.get_best_candidates()
+        raise Exception('Use C# for tests or run the algorithm directly')
 
     def AlreadyThere(self, p):
         """
