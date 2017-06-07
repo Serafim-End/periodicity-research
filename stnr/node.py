@@ -25,8 +25,8 @@ class OccurNode(object):
         :param previous: :type: OccurNode
         """
         self.value = value
-        self.next = next
-        self.previous = previous
+        self.next = Node.default() if next is None else next
+        self.previous = Node.default() if previous is None else previous
 
 
 class OccurList(object):
