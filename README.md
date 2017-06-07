@@ -75,6 +75,9 @@ to test this algorithm ask about additional implementation that based on masudio
 - generate_data.py - customize and run the file
 - test.py choose the test function and run it
 
+###### Brief analysis of the picture
+- just to show the results of my tests
+![noise](http://i67.tinypic.com/30nekqx.png)
 _______________________________________________________________________________
 
 Send me email to endnikita@gmail.com if you want to compare these algorithms with any simple like algorithms below 
