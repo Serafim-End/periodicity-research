@@ -96,11 +96,11 @@ All of them were implemented on Java with GUI interface (JavaFX)
 - modification of Floyd (binary degree representation) that estimate period more correct
 
 #### Gosper algorithm
-######pros and cons are the same as Floyd
+###### pros and cons are the same as Floyd
 - independent implementation 
 
 #### Nivash algorithm
-######pros and cons:
+###### pros and cons:
 - very fast 
 - more correct than previous 
 - was developed only in 2004
