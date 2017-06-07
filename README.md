@@ -36,6 +36,10 @@ If you wanna test Korotkov algortihms - see the cluster link
 - fast computational complexity due to FFT in the kernel 
 - works well with any sizes of alphabet and any sizes of sequence
 
+###### Brief analysis of the picture
+- just to show the efficiency (time complexity) of the CONV algorithm 
+![time](http://i65.tinypic.com/30c84cy.png)
+
 ###### main disadvantages of the algorithm:
 - does not work with any noises (works well only with ``replace`` noise)
 - there are no single implementation for all types of periodicity
