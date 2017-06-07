@@ -62,6 +62,29 @@ to test this algorithm ask about additional implementation that based on masudio
 - generate_data.py - customize and run the file
 - test.py choose the test function and run it
 
+_______________________________________________________________________________
 
-if you wanna test algorithm from existing package with FLOYD / BRENT / GOSPER / NIVASH - 
-ask about the test programthat implemented on Java ( with nice GUI interface )
+Send me email to endnikita@gmail.com if you want to compare these algorithms with any simple like algorithms below 
+All of them were implemented on Java with GUI interface (JavaFX)
+
+##### Available algorithms to compare with:
+#### Floyd algorithm
+###### pros: 
+- easy to understand, easy to implement
+###### cons:
+- no chances to detect difficult periodicity (more than one same elements in a period)
+- single cycle estimation
+
+#### Brean algorithm
+###### pros and cons are the same 
+- modification of Floyd (binary degree representation) that estimate period more correct
+
+#### Gosper algorithm
+######pros and cons are the same as Floyd
+- independent implementation 
+
+#### Nivash algorithm
+######pros and cons:
+- very fast 
+- more correct than previous 
+- was developed only in 2004
