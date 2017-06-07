@@ -255,7 +255,6 @@ class EdgeStruct(object):
         self.pnOccurLength = [-1]
 
 
-
 class TempSuffix(object):
 
     def __init__(self, theSuffix, thePosition):
@@ -322,7 +321,7 @@ class SuffTree(SuffixHelper):
     # :param Nodes: :type: Node[]
     Nodes = None
 
-    def __init__(self, T, minThreshold=0.5, tolWin=0, dmax=0,
+    def __init__(self, stnr_instance,  T, minThreshold=0.5, tolWin=0, dmax=0,
                  minLengthOfSegment=0, specificPeriod=-1):
         """
         
@@ -333,6 +332,8 @@ class SuffTree(SuffixHelper):
         :param minLengthOfSegment: :param:  double 
         :param specificPeriod: :param: int
         """
+        self.stnr_instance = stnr_instance
+
         self.ov = ''
 
         self.T = T
@@ -368,11 +369,11 @@ class SuffTree(SuffixHelper):
         Edge.T = T
         print T
 
-        SuffTree.Nodes = [Node.default()] * (2 * self.N)
+        SuffTree.Nodes = [Node.default() for i in range(2 * self.N)]
         prime = Prime(int(2 * self.N * 1.1)).next()
 
         Edge.HASH_TABLE_SIZE = prime
-        Edge.edges = [Edge.default()] * prime
+        Edge.edges = [Edge.default() for i in range(prime)]
 
         active = Suffix(0, 0, -1)
         for i in range(self.N):
@@ -543,7 +544,7 @@ class SuffTree(SuffixHelper):
         edgeCol = Edge.FindAll1(stn)  # list of Edges
 
         for e in edgeCol:
-            es = EdgeStruct(e=e,tabs=0, pnValue=0)
+            es = EdgeStruct(e=e, tabs=0, pnValue=0)
             es.pnIndexesIndex = 0
             s.append(es)
 
@@ -607,94 +608,14 @@ class SuffTree(SuffixHelper):
 
         current = e.st
 
-        if e.value < 35:
-            for i in range(e.len):
-                self.ovl.append(current.value)
-                current = current.next
-
-            current = e.st
-            STNRAlgorithm.CalculatePeriod(self.ovl, e.value)
-            self.ovl = None
-            return
-
-        last = e.st
-        for k in range(e.len):
-            last = last.next
-
-        lastOccurValue = last.value
-        preDiffValue = -5
-        self.calculatePeriodCounter += 1
-
-        for i in range(1, e.len):
-            self.outerLoopCounterBeforeCheck += 1
-            diffValue = current.next.value - current.value
-
-            if (diffValue < 2 or diffValue < e.value or
-                        diffValue > 20 or diffValue == preDiffValue):
-                self.diffCounter += 1
-                current = current.next
-                continue
-
-            p = Period(
-                periodValue=diffValue,
-                stPos=current.value,
-                threshold=0,
-                endPos=lastOccurValue
-            )
-
-            p.fci = p.stPos
-            p.length = e.value
-            preDiffValue = diffValue
-
-            if PeriodCollection.exist(p):
-                self.periodColExistCounter += 1
-                current = current.next
-                continue
-
-            self.outerLoopCounterAfterCheck += 1
-            p.foundPosCount = 0
-
-            A, C = 0
-            B = 0
-            sumPerVal = 0
-            preSubCurValue = -5
-            preStPos = p.stPos
-            currStPos = p.stPos
-
-            subCurrent = current
-
-            for j in range(i, e.len):
-                self.innerLoopCounter += 1
-                A = subCurrent.value - currStPos
-                B = round(float(A) / p.periodValue)
-                C = A - (p.periodValue * int(B))
-
-                if (-1 * self.tolWin) <= C <= self.tolWin:
-
-                    if round(float((preSubCurValue - currStPos) / p.periodValue)) != B:
-                        preSubCurValue = subCurrent.value
-                        currStPos = subCurrent.value
-                        p.foundPosCount += 1
-                        sumPerVal += (p.periodValue + C)
-                if (j != e and j < e.len and
-                            (subCurrent.next.value - subCurrent.value) >= self.dmax and
-                            (currStPos - p.stPos) >= (self.minLengthOfSegment * (len(self.T) - 1))):
-                    p.endPos = currStPos
-                    break
-                subCurrent = subCurrent.next
-
-            y = 0.
-            p.avgPeriodValue = (sumPerVal - p.periodValue) / (p.foundPosCount - 1)
-
-            if ((p.endPos + p.length - p.stPos) % int(round(p.avgPeriodValue))) >= e.value:
-                y = 1.
-            th1 = p.foundPosCount / math.floor((float(p.endPos + p.length - p.stPos) / p.avgPeriodValue) + y)
-            p.threshold = th1
-
-            if p.threshold >= self.minThreshold:
-                self.AddPeriodCounter += 1
-                PeriodCollection.add(p.periodValue, p)
+        for i in range(e.len):
+            self.ovl.append(current.value)
             current = current.next
+
+        current = e.st
+        self.stnr_instance.CalculatePeriod(self.ovl, e.value)
+        self.ovl = None
+        return
 
     def AddOccurNodes(self, eSource, eDest):
         """
@@ -782,7 +703,12 @@ class SuffTree(SuffixHelper):
         if theSubstring is None:
             return False
 
-        substringEndNode = self.FindSubstringNode(theSubstring, 0, self.GetEdgesWithSource(0))
+        substringEndNode = self.FindSubstringNode(
+            theSubstring,
+            0,
+            self.GetEdgesWithSource(0)
+        )
+
         if substringEndNode != -1:
             return True
         else:
@@ -822,7 +748,12 @@ class SuffTree(SuffixHelper):
         if theSubstring is None:
             return []
 
-        substringEndNode = self.FindSubstringNode(theSubstring, 0, self.GetEdgesWithSource(0))
+        substringEndNode = self.FindSubstringNode(
+            theSubstring,
+            0,
+            self.GetEdgesWithSource(0)
+        )
+
         childEdges = self.GetEdgesWithSource(substringEndNode)
         substringIndexList = []
 
@@ -833,7 +764,7 @@ class SuffTree(SuffixHelper):
             substringIndexList.append(self.T.index(theSubstring))
             return substringIndexList
 
-        substringIndexList = self.FindLeafIndexes(
+        substringIndexList = self.find_leaf_indexes(
             substringEndNode,
             substringIndexList,
             childEdges
@@ -841,7 +772,7 @@ class SuffTree(SuffixHelper):
 
         return substringIndexList
 
-    def FindLeafIndexes(self, originNode, currentIndexList, currentEdges):
+    def find_leaf_indexes(self, originNode, currentIndexList, currentEdges):
         """
         
         :param originNode: :type: int
@@ -849,13 +780,17 @@ class SuffTree(SuffixHelper):
         :param currentEdges: type: Edge[]
         :return: 
         """
-
-        localList = []
+        local_list = []
 
         for edge in currentEdges:
             loopEdgeList = self.GetEdgesWithSource(edge.end_node)
             if len(loopEdgeList) == 0:
-                localList.append(edge.value)
+                local_list.append(edge.value)
             else:
-                localList += self.FindLeafIndexes(edge.end_node, localList, loopEdgeList)
-        return localList
+                local_list += self.find_leaf_indexes(
+                    edge.end_node,
+                    local_list,
+                    loopEdgeList
+                )
+
+        return local_list
