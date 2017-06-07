@@ -99,7 +99,6 @@ class PeriodCollection(object):
         return False
 
 
-
 class STNRAlgorithm(object):
     s = ''
 
@@ -230,6 +229,15 @@ class STNRAlgorithm(object):
                               self.periodCollection[i].st) < (self.minLengthSegment * len(self.s)))):
                     self.periodCollection.remove(self.periodCollection[i])
                     i -= 1
+
+    def get_best_candidates(self):
+        """
+        sounds like a cast
+        :return: best candidate
+        """
+
+        from warp.algorithm import WARPAlgorithm as wa
+        return wa.get_best_candidates()
 
     def AlreadyThere(self, p):
         """
