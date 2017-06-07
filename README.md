@@ -12,6 +12,15 @@ The research of accuracy of searching cycles methods in symbolic sequences (time
 - works with all types of noise
 - works with all types of periodicity
 
+About all future analysis - percent (доля) in this case one 
+(percent of noisy periods) * (percent of noise in period) where
+percent of noisy periods = percent of noisy periods in my tests
+###### Brief analysis of the picture
+- just to show that algorithm (in my research) works more efficiently with small periods
+ 
+![stack Overflow](https://ibb.co/g3VNXa)
+
+
 ###### main conces of the algorithm:
 - sometimes you can wait for hours to get result (if you use cluster)
 - not easy to prepare the customizations for genetic algorithm 
