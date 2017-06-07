@@ -18,7 +18,7 @@ percent of noisy periods = percent of noisy periods in my tests
 ###### Brief analysis of the picture
 - just to show that algorithm (in my research) works more efficiently with small periods
  
-![stack Overflow](https://ibb.co/g3VNXa)
+[IMG]http://i63.tinypic.com/2vdihsl.png[/IMG]
 
 
 ###### main conces of the algorithm:
