@@ -16,7 +16,8 @@ Examples of Data files that was tested [on cluster](http://victoria.biengi.ac.ru
 
 
 If you wanna test Korotkov algortihms - see the cluster link
-if you wanna test the STNR algorithm - ask about C# implementation
+if you wanna test the STNR algorithm - ask about Python / C# implementation 
+                                       that based on masudio implementation 
 
 if you wanna test algorithm from existing package with FLOYD / BRENT / GOSPER / NIVASH - ask about the test program
 that implemented on Java ( with nice GUI interface :-) )
