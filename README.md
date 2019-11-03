@@ -17,8 +17,7 @@ About all future analysis - percent (доля) in this case one
 percent of noisy periods = percent of noisy periods in my tests
 ###### Brief analysis of the picture
 - just to show that algorithm (in my research) works more efficiently with small periods
- 
-![Korotkov](http://i63.tinypic.com/2vdihsl.png)
+[comment]: ![Korotkov](http://i63.tinypic.com/2vdihsl.png)
 
 
 ###### main conces of the algorithm:
@@ -38,7 +37,7 @@ If you wanna test Korotkov algortihms - see the cluster link
 
 ###### Brief analysis of the picture
 - just to show the efficiency (time complexity) of the CONV algorithm 
-![time](http://i65.tinypic.com/30c84cy.png)
+[comment]: ![time](http://i65.tinypic.com/30c84cy.png)
 
 ###### main disadvantages of the algorithm:
 - does not work with any noises (works well only with ``replace`` noise)
@@ -77,7 +76,7 @@ to test this algorithm ask about additional implementation that based on masudio
 
 ###### Brief analysis of the picture
 - just to show the results of my tests
-![noise](http://i67.tinypic.com/30nekqx.png)
+[comment]: ![noise](http://i67.tinypic.com/30nekqx.png)
 _______________________________________________________________________________
 
 Send me email to endnikita@gmail.com if you want to compare these algorithms with any simple like algorithms below 
